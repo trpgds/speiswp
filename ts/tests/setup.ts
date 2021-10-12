@@ -10,7 +10,6 @@ export type { Contract };
 export const provider = ganache.provider()
 export const web3 = new Web3(provider);
 
-
 export async function getTestContracts(filter?: RegExp, nameFilter?: RegExp): Promise<Record<string, Contract>> {
 
     const myAddress = (await web3.eth.getAccounts())[0]

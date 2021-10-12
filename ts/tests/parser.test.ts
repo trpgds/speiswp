@@ -1,7 +1,8 @@
 const ganache = require("ganache-cli");
+import { after } from "lodash";
 import { dateDiff, dec2Ascii, dec2hex, formatNumber, hexToAscii } from "../utils";
 import { CepParams, createCep } from "./helper";
-import { Contract, getTestContracts } from "./setup";
+import { Contract, getTestContracts, provider } from "./setup";
 
 let contracts: Record<string, Contract>;
 beforeAll(async () => {
