@@ -2,9 +2,9 @@
 
 [![Build Status](https://app.travis-ci.com/trpgds/speiswp.svg?branch=master)](https://app.travis-ci.com/trpgds/speiswp)
 
-**Deploy**
+**Generate test receipts**
 ```
-./run dep
+./run cep
 ```
 
 **Admin tools**
