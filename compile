@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf bin
+
+solc --bin --abi --optimize --overwrite  -o ./bin  src/*.sol
