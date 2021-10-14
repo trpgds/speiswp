@@ -28,6 +28,7 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-typescript": "^7.15.0",
+    "@poanet/solidity-flattener": "^3.0.6",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.175",
     "@types/node": "^16.9.6",

@@ -2,7 +2,6 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 import "./00-IERC20.sol";
-import {Creator} from "./02-createOrder.sol";
 import {Funding} from "./03-funding.sol";
 import {Disable} from "./03-disable.sol";
 import {Lock} from "./03-lock.sol";

@@ -5,6 +5,9 @@ import { question } from "./utils";
 // BNB testnet
 // https://docs.binance.org/smart-chain/developer/BEP20.html
 const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+
+//const web3 = new Web3('https://bsc-dataseed.binance.org/');
+
 import util from "util";
 import { getContracts } from "./tests/set";
 import fs from "fs";

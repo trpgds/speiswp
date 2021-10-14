@@ -25,19 +25,6 @@ const getCompilerInput = (sources: any, libraries: any, src: string = "*", contr
             "optimizer": {
                 "enabled": true,
                 "runs": 200,
-                "details": {
-                    "peephole": true,
-                    "inliner": true,
-                    "jumpdestRemover": true,
-                    "orderLiterals": false,
-                    "deduplicate": false,
-                    "cse": true,
-                    "constantOptimizer": true,
-                    "yul": true,
-                    "yulDetails": {
-                        "stackAllocation": true,
-                    }
-                }
             },
             evmVersion: "byzantium",
             libraries: libraries,
@@ -78,17 +65,18 @@ export async function getContracts(web3: Web3, myAddress: string, filter?: RegEx
 
     let libraries: any = {};
 
-    const compile = (src: string[]) => {
-        const sources = mapValues(keyBy(src, x => x),
-            x => ({
+    const compile = (src: string) => {
+        const sources = {
+            [src]:
+            {
                 urls: [
-                    "./" + x
+                    "./" + src
                 ]
-            }))
-            ;
-
+            }
+        };
 
         const input = JSON.stringify(getCompilerInput(sources, libraries));
+
         const outputJson = execSync(`solc --allow-paths . --base-path ./src --standard-json`, {
             input: input
         }).toString();
@@ -104,7 +92,7 @@ export async function getContracts(web3: Web3, myAddress: string, filter?: RegEx
     let libSolC = "";
     for (const src of srcNames) {
         while (true) {
-            let compilerOutput = compile([src]);
+            let compilerOutput = compile(src);
             if (compilerOutput.errors != null) {
                 console.error(compilerOutput.errors);
                 throw new Error("Compiler error");
@@ -162,9 +150,9 @@ export async function getContracts(web3: Web3, myAddress: string, filter?: RegEx
     }
     const finalBalance = await getBalance();
     const cost = finalBalance - initialBalance;
-    if (!areWeTestingWithJest()) {
-        console.log("Deployment cost (ETH)", cost);
-    }
+    //if (!areWeTestingWithJest()) {
+    console.log("Deployment cost (ETH)", cost);
+    //}
 
     getContractsResult = ret;
     return ret;

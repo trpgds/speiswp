@@ -21,7 +21,7 @@ export const gasPrice = "" + (10 * gwei);
 
 (async () => {
     const privateKey = await question("private key?", fs.readFileSync("privatekey.user").toString());
-    const contract = await question("contract?", "0xb2CcA96594B962FC0cD81a242352BE950b36B0D9");
+    const contract = await question("contract?", "0x99081060407147c2572938FB9393b66455DEec1f");
     const account = web3.eth.accounts.wallet.add(privateKey);
     const myAddress = account.address;
     console.log("my address", myAddress);
