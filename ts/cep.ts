@@ -17,7 +17,8 @@ import { sign } from "./tests/test-key";
         date: date,
         destRFC: "ABCG395813AAA",
         origAccount: "000123123123123123",
-        origRFC: "ABCG395813AAA"
+        origRFC: "ABCG395813AAA",
+        long: true
     };
 
     const validCep = createCep(cep);

@@ -20,11 +20,17 @@ export interface CepParams {
     destRFC: string;
     nonce: string;
     amount: number;
+    long: boolean;
 }
 
-export function createCep({ date, origAccount, destAccount, nonce, amount, origRFC, destRFC }: CepParams) {
+export function createCep({ date, origAccount, destAccount, nonce, amount, origRFC, destRFC, long }: CepParams) {
     const dateStr = "" + formatNumber(date.getDate(), 2) + formatNumber(date.getMonth() + 1, 2) + date.getFullYear();
     const amountStr = formatNumber(amount, 1, 2, false);
     const rand = Array.from(Array(20), () => Math.floor(Math.random() * 10).toString(10)).join('').toUpperCase();
-    return `||1|${dateStr}|${dateStr}|123456|40002|BANORTE|CRYPTO CRYPTO CRYPTO|40|${origAccount}|${origRFC}|BANAMEX|JUAN,JUAN/JUAN|3|${destAccount}|${destRFC}|${nonce}|0.00|${amountStr}|NA|NA|0|0|NA|0|0.00|${rand}||`;
+
+    if (long)
+        return `||1|${dateStr}|${dateStr}|123456|40002|BANORTE|CRYPTO CRYPTO CRYPTO|40|${origAccount}|${origRFC}|BANAMEX|JUAN,JUAN/JUAN|3|${destAccount}|${destRFC}|${nonce}|0.00|${amountStr}|NA|NA|0|0|NA|0|0.00|${rand}||`;
+
+    return `||1|${dateStr}|${dateStr}|123456|40002|BANORTE|CRYPTO CRYPTO CRYPTO|40|${origAccount}|${origRFC}|BANAMEX|JUAN,JUAN/JUAN|3|${destAccount}|${destRFC}|${nonce}|0.00|${amountStr}|${rand}||`;
+
 }

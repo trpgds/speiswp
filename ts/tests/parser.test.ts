@@ -44,6 +44,7 @@ test("cep", async () => {
             amount: 1234.56,
             origRFC: "RCCT033354AB0",
             destRFC: "ABCG395813AAA",
+            long: true,
         },
         {
             date: new Date(2023, 1 - 1, 1),
@@ -53,6 +54,7 @@ test("cep", async () => {
             amount: 0.01,
             origRFC: "RCCT033354AB0",
             destRFC: "ABCG395813AAA",
+            long: false,
         },
         {
             date: new Date(2021, 12 - 1, 31),
@@ -62,6 +64,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "RCCT033354AB0",
             destRFC: "ABCG395813AAA",
+            long: true,
         },
         {
             date: new Date(2022, 12 - 1, 31),
@@ -71,6 +74,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "RCCT033354AB0",
             destRFC: "ABCG395813AAA",
+            long: false,
         },
         {
             date: new Date(2022, 12 - 1, 31),
@@ -80,6 +84,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "RCCT033354AB",
             destRFC: "ABCG395813AAA",
+            long: true,
         },
         {
             date: new Date(2022, 12 - 1, 31),
@@ -89,6 +94,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "RCCT033354AB24859C",
             destRFC: "ABCG395813AA",
+            long: false,
         },
         {
             date: new Date(2022, 12 - 1, 31),
@@ -98,6 +104,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "",
             destRFC: "ABCG395813AA",
+            long: true,
         }, {
             date: new Date(2022, 12 - 1, 31),
             origAccount: "072580004482",
@@ -106,7 +113,9 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "ND",
             destRFC: "ABCG395813AA",
-        },
+            long: false,
+        }
+        ,
         {
             date: new Date(2022, 12 - 1, 31),
             origAccount: "072580004482",
@@ -115,6 +124,7 @@ test("cep", async () => {
             amount: 12345678.99,
             origRFC: "ND",
             destRFC: "",
+            long: true,
         },
     ];
 

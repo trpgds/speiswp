@@ -112,7 +112,8 @@ test("buyOrder", async () => {
         destRFC: "123456",
         nonce: speiNonce,
         origAccount: "123456789012",
-        origRFC: "20482820"
+        origRFC: "20482820",
+        long: false
     });
 
     const validSignature = sign(validCep, 0);
@@ -158,7 +159,8 @@ test("buyOrder", async () => {
             destRFC: "123456",
             nonce: speiNonce,
             origAccount: "123456789012",
-            origRFC: "20482820"
+            origRFC: "20482820",
+            long: true
         });
 
         const signature = sign(cep, 0);
@@ -178,7 +180,8 @@ test("buyOrder", async () => {
             destRFC: "123456",
             nonce: speiNonce,
             origAccount: "123456789012",
-            origRFC: "20482820"
+            origRFC: "20482820",
+            long: true
         });
 
 
@@ -199,7 +202,8 @@ test("buyOrder", async () => {
             destRFC: "123456",
             nonce: "ABC321",
             origAccount: "123456789012",
-            origRFC: "20482820"
+            origRFC: "20482820",
+            long: true
         });
 
         const signature = sign(cep, 0);
@@ -296,7 +300,8 @@ test("buyOrder", async () => {
                 destRFC: "123456",
                 nonce: speiNonce,
                 origAccount: "123456789012",
-                origRFC: "20482820"
+                origRFC: "20482820",
+                long: true
             });
 
             const validSignature2 = sign(validCep2, 0);
@@ -323,7 +328,8 @@ test("buyOrder", async () => {
                 destRFC: "123456",
                 nonce: speiNonce,
                 origAccount: "123456789012",
-                origRFC: "20482820"
+                origRFC: "20482820",
+                long: false,
             });
 
             const validSignature2 = sign(validCep2, 0);
@@ -361,7 +367,8 @@ test("buyOrder", async () => {
                 destRFC: "123456",
                 nonce: speiNonce,
                 origAccount: "123456789012",
-                origRFC: "20482820"
+                origRFC: "20482820",
+                long: true
             });
 
             const validSignature2 = sign(validCep2, 0);

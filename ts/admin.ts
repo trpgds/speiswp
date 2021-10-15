@@ -3,12 +3,16 @@ import Web3 from "web3";
 
 // BNB testnet
 // https://docs.binance.org/smart-chain/developer/BEP20.html
-const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+//const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+
+const web3 = new Web3('https://bsc-dataseed.binance.org/');
+
+
 import readline from 'readline';
 import { maxGas } from "./deploy";
 import { gwei } from "./units";
 import fs from "fs";
-import { question, splitHex } from "./utils";
+import { base64ToHex, hexToBase64, question, splitHex } from "./utils";
 
 
 const speiAbi: any =
@@ -21,7 +25,7 @@ export const gasPrice = "" + (10 * gwei);
 
 (async () => {
     const privateKey = await question("private key?", fs.readFileSync("privatekey.user").toString());
-    const contract = await question("contract?", "0x99081060407147c2572938FB9393b66455DEec1f");
+    const contract = await question("contract?", "0x187C57ECAF44ea4112eA88Df774584bA084391d4");
     const account = web3.eth.accounts.wallet.add(privateKey);
     const myAddress = account.address;
     console.log("my address", myAddress);
@@ -55,8 +59,8 @@ export const gasPrice = "" + (10 * gwei);
                 break;
             }
             case "addpk": {
-                const exp = await question("exp (hex)?");
-                const mod = await question("mod (hex)?");
+                const exp = base64ToHex(await question("exp (b64)?"));
+                const mod = base64ToHex(await question("mod (b64)?"));
 
                 /** key public exponent */
                 const expFormatted = "0x" + web3.utils.leftPad(exp, 64);
@@ -65,7 +69,7 @@ export const gasPrice = "" + (10 * gwei);
 
                 const receipt = await SPEI.methods.addPublicKey(expFormatted, modulusFormatted).send({
                     from: myAddress,
-                    gas: maxGas,
+                    gas: 300000,
                     gasPrice: gasPrice,
                 });
 
