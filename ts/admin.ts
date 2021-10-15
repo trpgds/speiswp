@@ -32,7 +32,7 @@ export const gasPrice = "" + (10 * gwei);
 
     const SPEI = createContract(web3, contract, speiAbi);
 
-    const options = ["addcoin", "coincount", "addpk"] as const;
+    const options = ["addcoin", "coincount", "addpk", "fee", "reqTime", "time"] as const;
 
     while (true) {
         const option: typeof options[number] = await question("option? " + options.join(", ")) as any;
@@ -76,6 +76,41 @@ export const gasPrice = "" + (10 * gwei);
                 console.log(receipt);
                 break;
             }
+            case "fee": {
+                const fee = Number.parseFloat(await question("fee (percentage 0-100)?"));
+                const feeVal = Math.round(fee * 10);
+
+                const receipt = await SPEI.methods.changeFee(feeVal).send({
+                    from: myAddress,
+                    gas: 300000,
+                    gasPrice: gasPrice,
+                });
+
+                console.log(receipt);
+                break;
+            }
+            case "reqTime": {
+                const receipt = await SPEI.methods.requestTimelockChange().send({
+                    from: myAddress,
+                    gas: 300000,
+                    gasPrice: gasPrice,
+                });
+
+                console.log(receipt);
+                break;
+            }
+            case "time": {
+                const timelock = Number.parseFloat(await question("timelock (minutes)?"));
+                const receipt = await SPEI.methods.changeTimelock(timelock).send({
+                    from: myAddress,
+                    gas: 300000,
+                    gasPrice: gasPrice,
+                });
+
+                console.log(receipt);
+                break;
+            }
+
         }
     }
 })().catch(reason => {
