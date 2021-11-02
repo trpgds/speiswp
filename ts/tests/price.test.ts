@@ -85,7 +85,7 @@ test("price", async () => {
 
         // 50 USD order:
         // each token = 20MXN
-        const result: SendResult = await SPEI.methods.createOrder(0, "50" + z15, dest, getCoinIndex(), 20, 1000, nonce, 1000, 60, "0xffff").send({
+        const result: SendResult = await SPEI.methods.createOrder("50" + z15, dest, getCoinIndex(), 20, 1000, nonce, 1000, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice

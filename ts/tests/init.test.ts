@@ -35,7 +35,7 @@ test("init coins", async () => {
     const call = callContract(SPEI);
     // init:
     {
-        expect(await call("getCoinCount")).toEqual("12");
+        expect(await call("getCoinCount")).toEqual("11");
 
         await expect((async () => {
             await SPEI.methods.addCoin("0x6aD300AF4763D1a1c50C086e4Ce77A399aE65DBa").send({
@@ -47,7 +47,7 @@ test("init coins", async () => {
         })()).rejects.toThrow(/owner only/);
 
 
-        expect(await call("getCoinCount")).toEqual("12");
+        expect(await call("getCoinCount")).toEqual("11");
 
         expect(await call("getCoin", 0)).toEqual("0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c");
         expect(await call("getCoin", 1)).toEqual("0x55d398326f99059fF775485246999027B3197955");
@@ -60,9 +60,9 @@ test("init coins", async () => {
             gasPrice: gasPrice
         });
 
-        expect(await call("getCoinCount")).toEqual("13");
+        expect(await call("getCoinCount")).toEqual("12");
 
-        expect(await call("getCoin", 12)).toEqual("0x6aD300AF4763D1a1c50C086e4Ce77A399aE65DBa");
+        expect(await call("getCoin", 11)).toEqual("0x6aD300AF4763D1a1c50C086e4Ce77A399aE65DBa");
 
     }
 

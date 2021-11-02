@@ -96,7 +96,7 @@ test("buyOrder", async () => {
             gasPrice: gasPrice
         });
 
-        await SPEI.methods.createOrder(0, "100" + z15, encodeDest(destAccount), getCoinIndex(), 20, 1000, encode(speiNonce), 1000, 60, 0).send({
+        await SPEI.methods.createOrder("100" + z15, encodeDest(destAccount), getCoinIndex(), 20, 1000, encode(speiNonce), 1000, 60, 0).send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice

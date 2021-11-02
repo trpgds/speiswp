@@ -140,6 +140,8 @@ contract SPEI {
     /** For each order, the seller address */
     mapping(uint256 => address) internal orderSellers;
 
+    uint256 public orderCount;
+
     /** All sell orders */
     mapping(uint256 => Types.Order) internal orders;
 
@@ -233,7 +235,6 @@ contract SPEI {
 
     /** Creates a sell order and returns the order index. Caller must pay "funds" in "coin" */
     function createOrder(
-        uint256 index,
         uint80 funds,
         uint160 dest,
         uint16 coinIndex,
@@ -249,7 +250,8 @@ contract SPEI {
         require(lockTime > 0, "lockTime is 0");
 
         // Can't overwrite orders:
-        require(orderSellers[index] == address(0), "order already exists");
+        uint256 index = orderCount;
+        orderCount++;
 
         if (funds > 0) {
             address coin = coins[coinIndex];

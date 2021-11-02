@@ -74,7 +74,7 @@ test("createOrder", async () => {
     // order creation:
 
     {
-        const result: SendResult = await SPEI.methods.createOrder(0, 0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+        const result: SendResult = await SPEI.methods.createOrder(0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice
@@ -105,7 +105,7 @@ test("createOrder", async () => {
 
     {
         // index increase:
-        const result: SendResult = await SPEI.methods.createOrder(1, 0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+        const result: SendResult = await SPEI.methods.createOrder(0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice
@@ -118,7 +118,7 @@ test("createOrder", async () => {
     {
         // unfunded:    
         await expect((async () => {
-            await SPEI.methods.createOrder(2, mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+            await SPEI.methods.createOrder(mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
                 from: sellerAddress,
                 gas: maxGas,
                 gasPrice: gasPrice
@@ -140,7 +140,7 @@ test("createOrder", async () => {
         //funded but not approved:
 
         await expect((async () => {
-            await SPEI.methods.createOrder(2, mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+            await SPEI.methods.createOrder(mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
                 from: sellerAddress,
                 gas: maxGas,
                 gasPrice: gasPrice
@@ -161,7 +161,7 @@ test("createOrder", async () => {
 
     {
         // funded:
-        const result = await SPEI.methods.createOrder(2, mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 1000, 60, "0xffff").send({
+        const result = await SPEI.methods.createOrder(mul1eN("100", 15), dest, getCoinIndex(), 20, 1000, nonce, 1000, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice

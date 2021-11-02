@@ -26,9 +26,6 @@ library Coins {
         // DAI
         coins[c++] = address(0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3);
 
-        // USDC
-        coins[c++] = address(0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d);
-
         // binance pegs:
 
         // BTC

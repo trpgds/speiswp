@@ -47,8 +47,7 @@ test("createOrder", async () => {
 
 
     {
-        // index increase:
-        const result: SendResult = await SPEI.methods.createOrder(16, 0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+        const result: SendResult = await SPEI.methods.createOrder(0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice
@@ -56,12 +55,12 @@ test("createOrder", async () => {
 
 
         const index = Number.parseInt(result.events.OrderCreated.returnValues.index);
-        expect(index).toBe(16);
+        expect(index).toBe(0);
     }
 
     {
         // index increase:
-        const result: SendResult = await SPEI.methods.createOrder(32, 0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
+        const result: SendResult = await SPEI.methods.createOrder(0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
             from: sellerAddress,
             gas: maxGas,
             gasPrice: gasPrice
@@ -69,16 +68,7 @@ test("createOrder", async () => {
 
 
         const index = Number.parseInt(result.events.OrderCreated.returnValues.index);
-        expect(index).toBe(32);
+        expect(index).toBe(1);
     }
-
-    await expect((async () => {
-        //same index fail:
-        const result: SendResult = await SPEI.methods.createOrder(16, 0, dest, getCoinIndex(), 20, 1000, nonce, 0, 60, "0xffff").send({
-            from: sellerAddress,
-            gas: maxGas,
-            gasPrice: gasPrice
-        });
-    })()).rejects.toThrow();
 
 });
